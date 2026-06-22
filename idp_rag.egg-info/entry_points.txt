@@ -1,0 +1,2 @@
+[console_scripts]
+idp-worker = worker.__main__:main

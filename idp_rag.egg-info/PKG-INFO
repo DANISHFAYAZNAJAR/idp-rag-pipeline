@@ -1,0 +1,56 @@
+Metadata-Version: 2.4
+Name: idp-rag
+Version: 0.1.0
+Requires-Python: >=3.11
+Requires-Dist: fastapi>=0.111.0
+Requires-Dist: uvicorn[standard]>=0.29.0
+Requires-Dist: python-multipart>=0.0.9
+Requires-Dist: slowapi>=0.1.9
+Requires-Dist: sqlalchemy[asyncio]>=2.0.30
+Requires-Dist: asyncpg>=0.29.0
+Requires-Dist: alembic>=1.13.1
+Requires-Dist: psycopg2-binary>=2.9.9
+Requires-Dist: python-jose[cryptography]>=3.3.0
+Requires-Dist: passlib[bcrypt]>=1.7.4
+Requires-Dist: email-validator>=2.1.0
+Requires-Dist: celery[redis]>=5.4.0
+Requires-Dist: redis>=5.0.4
+Requires-Dist: langchain>=0.2.0
+Requires-Dist: langchain-openai>=0.1.0
+Requires-Dist: langchain-chroma>=0.1.0
+Requires-Dist: langchain-community>=0.2.0
+Requires-Dist: langchain-text-splitters>=0.2.0
+Requires-Dist: langgraph>=0.1.0
+Requires-Dist: openai>=1.30.0
+Requires-Dist: chromadb>=0.5.0
+Requires-Dist: pdfplumber>=0.11.0
+Requires-Dist: python-docx>=1.1.0
+Requires-Dist: unstructured[docx,pdf]>=0.14.0
+Requires-Dist: pytesseract>=0.3.10
+Requires-Dist: Pillow>=10.3.0
+Requires-Dist: rank-bm25>=0.2.2
+Requires-Dist: sentence-transformers>=3.0.0
+Requires-Dist: wandb>=0.17.0
+Requires-Dist: weave>=0.50.0
+Requires-Dist: structlog>=24.2.0
+Requires-Dist: prometheus-fastapi-instrumentator>=7.0.0
+Requires-Dist: fastmcp>=0.1.0
+Requires-Dist: pydantic>=2.7.0
+Requires-Dist: pydantic-settings>=2.3.0
+Requires-Dist: httpx>=0.27.0
+Requires-Dist: aiofiles>=23.2.1
+Requires-Dist: python-dotenv>=1.0.1
+Requires-Dist: tenacity>=8.3.0
+Requires-Dist: umap-learn>=0.5.12
+Requires-Dist: plotly>=6.8.0
+Requires-Dist: scikit-learn>=1.9.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.2.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.23.7; extra == "dev"
+Requires-Dist: pytest-cov>=5.0.0; extra == "dev"
+Requires-Dist: httpx>=0.27.0; extra == "dev"
+Requires-Dist: factory-boy>=3.3.0; extra == "dev"
+Requires-Dist: ruff>=0.4.0; extra == "dev"
+Requires-Dist: mypy>=1.10.0; extra == "dev"
+Provides-Extra: ui
+Requires-Dist: streamlit>=1.35.0; extra == "ui"
