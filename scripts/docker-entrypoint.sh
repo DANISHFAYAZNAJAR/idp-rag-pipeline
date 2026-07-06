@@ -35,11 +35,25 @@ case "${1:-api}" in
     exec python -m worker
     ;;
   ui)
-    log "starting streamlit on ${UI_HOST}:${UI_PORT}"
-    exec streamlit run ui/streamlit_app.py \
-      --server.address="$UI_HOST" \
-      --server.port="$UI_PORT" \
+    STREAMLIT_ARGS=(
+      --server.address="$UI_HOST"
+      --server.port="$UI_PORT"
       --browser.gatherUsageStats=false
+    )
+    UI_BASE_PATH="${UI_BASE_PATH:-}"
+    if [[ -n "$UI_BASE_PATH" ]]; then
+      # Streamlit expects a leading slash, no trailing slash.
+      UI_BASE_PATH="/${UI_BASE_PATH#/}"
+      UI_BASE_PATH="${UI_BASE_PATH%/}"
+      STREAMLIT_ARGS+=(
+        --server.baseUrlPath="$UI_BASE_PATH"
+        --server.enableCORS=false
+        --server.enableXsrfProtection=false
+      )
+      log "streamlit base path: ${UI_BASE_PATH}"
+    fi
+    log "starting streamlit on ${UI_HOST}:${UI_PORT}"
+    exec streamlit run ui/streamlit_app.py "${STREAMLIT_ARGS[@]}"
     ;;
   migrate)
     wait_for_db
