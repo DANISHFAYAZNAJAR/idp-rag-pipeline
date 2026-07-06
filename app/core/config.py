@@ -12,10 +12,11 @@ class Settings(BaseSettings):
     openai_chat_model: str = "gpt-4o-mini"
     openai_chat_model_answer: str = "gpt-4o-mini"
 
-    # W&B (required)
-    wandb_api_key: str
+    # W&B / Weave (optional tracing)
+    wandb_api_key: str = ""
     wandb_project: str = "idp-rag"
     wandb_entity: str = ""
+    enable_weave: bool = True
 
     # Database
     database_url: str
@@ -42,6 +43,7 @@ class Settings(BaseSettings):
     api_port: int = 8080
     ui_host: str = "0.0.0.0"
     ui_port: int = 8501
+    ui_base_path: str = ""
     api_public_url: str = "http://localhost:8080"
     postgres_port: int = 5432
     redis_port: int = 6379

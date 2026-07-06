@@ -3,7 +3,6 @@ import uuid
 from typing import AsyncIterator
 
 import structlog
-import weave
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 from langchain_openai import ChatOpenAI
@@ -12,6 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_current_user
 from app.core.config import settings
+from app.core.weave_setup import weave_attributes
 from app.db.base import get_db
 from app.db.models import Chunk, Document, DocumentStatus, QuerySession, QueryTurn, User
 from app.retrieval.graph import (
@@ -141,7 +141,7 @@ async def query_documents(
     )
     chat_history = _resolve_chat_history(body, db_history)
 
-    with weave.attributes({"session_id": str(session_id), "user_id": str(current_user.id)}):
+    with weave_attributes({"session_id": str(session_id), "user_id": str(current_user.id)}):
         initial_state: RAGState = {
             "query": body.question,
             "user_id": str(current_user.id),

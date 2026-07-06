@@ -1,5 +1,4 @@
 import structlog
-import weave
 from fastapi import FastAPI
 from fastapi.exceptions import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,18 +10,14 @@ from app.api.routes import auth, documents, entities, health, query
 from app.core.config import settings
 from app.core.exceptions import http_exception_handler
 from app.core.logging import setup_logging
+from app.core.weave_setup import init_weave
 
 log = structlog.get_logger()
 
 
 def create_app() -> FastAPI:
     setup_logging()
-
-    try:
-        weave.init(settings.wandb_project)
-        log.info("weave.initialized", project=settings.wandb_project)
-    except Exception as exc:
-        log.warning("weave.init_failed", error=str(exc))
+    init_weave()
 
     app = FastAPI(
         title="IDP RAG System",
